@@ -6,11 +6,14 @@ const worldElem = document.querySelector("[data-world]");
 setPixelToWorldScale();
 window.addEventListener("resize", setPixelToWorldScale);
 
+let lastTime = 0;
 function update(time) {
-  console.log(deleta);
-
+  const delta = time - lastTime;
+  console.log(delta);
+  lastTime = time;
   window.requestAnimationFrame(update);
 }
+window.requestAnimationFrame(update);
 
 function setPixelToWorldScale() {
   let worldToPixelScale;
