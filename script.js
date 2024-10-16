@@ -9,7 +9,7 @@ setPixelToWorldScale();
 window.addEventListener("resize", setPixelToWorldScale);
 document.addEventListener("keydown", handleStart, { once: true });
 
-setupGround(delta, 1);
+setupGround();
 
 let lastTime;
 function update(time) {
@@ -18,15 +18,17 @@ function update(time) {
     window.requestAnimationFrame(update);
     return;
   }
-
   const delta = time - lastTime;
-
-  updateGround(delta);
-
+  updateGround(delta, 1);
   lastTime = time;
   window.requestAnimationFrame(update);
 }
-window.requestAnimationFrame(update);
+
+function handleStart() {
+  lastTime = null;
+  setupGround();
+  window.requestAnimationFrame(update);
+}
 
 function setPixelToWorldScale() {
   let worldToPixelScale;
