@@ -7,6 +7,7 @@ const worldElem = document.querySelector("[data-world]");
 
 setPixelToWorldScale();
 window.addEventListener("resize", setPixelToWorldScale);
+document.addEventListener("keydown", handleStart, { once: true });
 
 setupGround(delta, 1);
 
