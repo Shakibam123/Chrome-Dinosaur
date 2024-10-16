@@ -5,6 +5,7 @@ const WORLD_HEIGHT = 30;
 const SPEED_SCALE_INCREASE = 0.00001;
 
 const worldElem = document.querySelector("[data-world]");
+const scoreElem = document.querySelector("[data-score]");
 
 setPixelToWorldScale();
 window.addEventListener("resize", setPixelToWorldScale);
@@ -14,6 +15,8 @@ setupGround();
 
 let lastTime;
 let speedScale;
+let score;
+
 function update(time) {
   if (lastTime == null) {
     lastTime = time;
@@ -21,8 +24,10 @@ function update(time) {
     return;
   }
   const delta = time - lastTime;
+
   updateGround(delta, speedScale);
   updateSpeedScale(delta);
+  updateScore(delta);
 
   lastTime = time;
   window.requestAnimationFrame(update);
@@ -32,9 +37,15 @@ function updateSpeedScale(delta) {
   speedScale += delta * SPEED_SCALE_INCREASE;
 }
 
+function updateScore(delta) {
+  score += delta * 0.01;
+  scoreElem.textContent = Math.floor(score);
+}
+
 function handleStart() {
   lastTime = null;
   speedScale = 1;
+  score = 0;
   setupGround();
   window.requestAnimationFrame(update);
 }
