@@ -1,5 +1,7 @@
 const groundElems = document.querySelectorAll("[data-ground]");
 
-function setupGround(delta) {
+export function updateGround(delta) {
+  groundElems.forEach((ground) => {
     
+  });
 }
