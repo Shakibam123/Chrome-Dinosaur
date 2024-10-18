@@ -10,6 +10,7 @@ export function setupCactus() {
 }
 
 export function updateCactus(delta, speedScale) {
+  document.querySelectorAll("[data-cactus]");
   if (nextCactusTime <= 0) {
     createCactus();
     nextCactusTime =
@@ -17,4 +18,13 @@ export function updateCactus(delta, speedScale) {
       speedScale;
   }
   nextCactusTime -= delta;
+}
+
+function createCactus() {
+  const cactus = document.createElement("img");
+  cactus.dataset.cactus = true;
+  cactus.src = "image/cactus.png";
+  cactus.classList.add("cactus");
+  setCustomProperty(cactus, "--left", 100);
+  worldElem.append(cactus);
 }
