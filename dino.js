@@ -31,6 +31,10 @@ export function updateDino(delta, speedScale) {
   handleJump(delta);
 }
 
+export function getDinoRect() {
+  return dinoElem.getBoundingClientRect();
+}
+
 function handleRun(delta, speedScale) {
   if (isJumping) {
     dinoElem.src = `image/dino-run-1.png`;
