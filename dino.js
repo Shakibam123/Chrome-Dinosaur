@@ -21,12 +21,12 @@ export function updateDino(delta, speedScale) {
 
 function handleRun(delta, speedScale) {
   if (isJumping) {
-    dinoElem.src = `imgs/dino-stationary.png`;
+    dinoElem.src = `image/dino-run-1.png`;
     return;
   }
   if (currentFrameTime >= FRAME_TIME) {
     dinoFrame = (dinoFrame + 1) % DINO_FRAME_COUNT;
-    dinoElem.src = `imgs/dino-run-${dinoFrame}.png`;
+    dinoElem.src = `image/dino-run-${dinoFrame}.png`;
     currentFrameTime -= FRAME_TIME;
   }
   currentFrameTime += delta * speedScale;
