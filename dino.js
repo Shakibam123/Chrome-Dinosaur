@@ -1,3 +1,9 @@
+import {
+  incrementCustomProperty,
+  setCustomProperty,
+  getCustomProperty,
+} from "./updateCustomProperty.js";
+
 const dinoElem = document.querySelector("[data-dino]");
 const JUMP_SPEED = 0.45;
 const GRAVITY = 0.0015;
@@ -16,7 +22,7 @@ currentFrameTime = 0;
 
 export function updateDino(delta, speedScale) {
   handleRun(delta, speedScale);
-  handleJump();
+  handleJump(delta);
 }
 
 function handleRun(delta, speedScale) {
@@ -32,4 +38,15 @@ function handleRun(delta, speedScale) {
   currentFrameTime += delta * speedScale;
 }
 
-function handleJump() {}
+function handleJump(delta) {
+  if (!isJumping) return;
+
+  incrementCustomProperty(dinoElem, "--bottom", yVelocity * delta);
+
+  if (getCustomProperty(dinoElem, "--bottom") <= 0) {
+    setCustomProperty(dinoElem, "--bottom", 0);
+    isJumping = false;
+  }
+
+  yVelocity -= GRAVITY * delta;
+}
