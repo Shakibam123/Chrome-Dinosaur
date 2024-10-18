@@ -6,4 +6,11 @@ const FRAME_TIME = 100;
 
 export function setupDino() {}
 
-export function updateDino(delta, speedScale) {}
+export function updateDino(delta, speedScale) {
+  handleRun();
+  handleJump();
+}
+
+function handleRun() {}
+
+function handleJump() {}
