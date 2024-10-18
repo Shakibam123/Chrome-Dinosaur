@@ -13,12 +13,18 @@ const FRAME_TIME = 100;
 let isJumping;
 let dinoFrame;
 let currentFrameTime;
+let yVelocity;
 
 export function setupDino() {}
 
 isJumping = false;
 dinoFrame = 0;
 currentFrameTime = 0;
+yVelocity = 0;
+setCustomProperty(dinoElem, "--bottom", 0);
+
+document.removeEventListener("keydown", onJump);
+document.addEventListener("keydown", onJump);
 
 export function updateDino(delta, speedScale) {
   handleRun(delta, speedScale);
@@ -49,4 +55,11 @@ function handleJump(delta) {
   }
 
   yVelocity -= GRAVITY * delta;
+}
+
+function onJump(e) {
+  if (e.code !== "Space" || isJumping) return;
+
+  yVelocity = JUMP_SPEED;
+  isJumping = true;
 }
